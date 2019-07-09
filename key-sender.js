@@ -112,8 +112,8 @@ module.exports = function() {
     module.execute = function(arrParams) {
         return new Promise(function(resolve, reject) {
             var jarPath = ''
-            if(jarLocation != NULL){
-                jarPath = path.join(jarLocation, 'key-sender.jar');
+            if(options.jarLocation != NULL){
+                jarPath = path.join(options.jarLocation, 'key-sender.jar');
             } else {
                 jarPath = path.join(__dirname, 'jar', 'key-sender.jar');
             }
