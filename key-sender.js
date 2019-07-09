@@ -11,7 +11,8 @@ module.exports = function() {
         "caseCorrection": null,
         "globalDelayPressMillisec": null,
         "globalDelayBetweenMillisec": null,
-        "extra": null
+        "extra": null,
+        "jarLocation": null
     };
 
     module.BATCH_EVENT_KEY_PRESS = 1;
@@ -110,7 +111,14 @@ module.exports = function() {
 
     module.execute = function(arrParams) {
         return new Promise(function(resolve, reject) {
-            var jarPath = path.join(__dirname, 'jar', 'key-sender.jar');
+            var jarPath = ''
+            if(jarLocation != NULL){
+                jarPath = path.join(jarLocation, 'key-sender.jar');
+            } else {
+                jarPath = path.join(__dirname, 'jar', 'key-sender.jar');
+            }
+            console.log(jarPath)
+            // var jarPath = path.join(__dirname, 'jar', 'key-sender.jar');
 
             var command = 'java -jar \"' + jarPath + '\" ' + arrParams.join(' ') + module.getCommandLineOptions();
 
